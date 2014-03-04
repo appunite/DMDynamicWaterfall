@@ -239,7 +239,13 @@
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_dynamic) {
-		return [super layoutAttributesForItemAtIndexPath:indexPath];
+		UICollectionViewLayoutAttributes *layoutAttributes = [super layoutAttributesForItemAtIndexPath:indexPath];
+        
+        if (!layoutAttributes) {
+            layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+        }
+        
+        return layoutAttributes;
     }
     
 	return [dynamicAnimator layoutAttributesForCellAtIndexPath:indexPath];
