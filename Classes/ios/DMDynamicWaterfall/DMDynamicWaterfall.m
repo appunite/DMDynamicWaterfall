@@ -239,17 +239,20 @@
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath {
     if (!_dynamic) {
-		UICollectionViewLayoutAttributes *layoutAttributes = [super layoutAttributesForItemAtIndexPath:indexPath];
-        
-        if (!layoutAttributes) {
-            layoutAttributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-        }
-        
-        return layoutAttributes;
+        return [[layoutItemAttributes objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     }
     
 	return [dynamicAnimator layoutAttributesForCellAtIndexPath:indexPath];
 }
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath {
+    if (!_dynamic) {
+        return [[layoutItemAttributes objectAtIndex:itemIndexPath.section] objectAtIndex:itemIndexPath.row];
+    }
+    
+	return [dynamicAnimator layoutAttributesForCellAtIndexPath:itemIndexPath];
+}
+
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)visibleRect {
 	if (!_dynamic) {

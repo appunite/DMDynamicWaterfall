@@ -83,9 +83,11 @@
 - (CGFloat) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout
 		heightForFooterAtIndexPath:(NSIndexPath *)indexPath;
 
+- (CGFloat)collectionView:(UICollectionView *)collectionView heightForHeaderInSection:(NSUInteger)section;
+
 @end
 
-@interface DMDynamicWaterfall : UICollectionViewFlowLayout
+@interface DMDynamicWaterfall : UICollectionViewLayout
 
 /**
  *  Datasource for dynamic waterfall layout
