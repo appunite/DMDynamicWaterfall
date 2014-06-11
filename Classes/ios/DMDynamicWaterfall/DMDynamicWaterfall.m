@@ -111,7 +111,7 @@
 	sectionRect.origin.y = CGRectGetMaxY(previousSectionRect)+sectionInsets.top;
 	
 	NSUInteger numberOfColumns = [self.dataSource collectionView:cView layout:self numberOfColumnsInSection:sectionIdx];
-	sectionRect.size.width =	CGRectGetWidth(cView.frame) - (sectionInsets.left + sectionInsets.right);
+	sectionRect.size.width = CGRectGetWidth(cView.frame) - (sectionInsets.left + sectionInsets.right);
 	
 	CGFloat columnSpace = sectionRect.size.width - ((interItemInsets.left*(numberOfColumns-1)) + (interItemInsets.left*(numberOfColumns-1)));
 	CGFloat columnWidth = (columnSpace/numberOfColumns);
@@ -123,13 +123,13 @@
 	
 	// #2: Define the rect of the header
 	CGRect headerFrame;
-	headerFrame.origin = sectionRect.origin;
-	headerFrame.size.width = sectionRect.size.width;
+	headerFrame.origin = CGPointMake(0.f, sectionRect.origin.y);
+	headerFrame.size.width = CGRectGetWidth(cView.frame);
 	headerFrame.size.height = [self.dataSource collectionView:cView layout:self heightForHeaderAtIndexPath:sectionPath];
 	
 	UICollectionViewLayoutAttributes *headerAttributes = [UICollectionViewLayoutAttributes
-															  layoutAttributesForSupplementaryViewOfKind: UICollectionElementKindSectionHeader
-																							withIndexPath: sectionPath];
+                                                          layoutAttributesForSupplementaryViewOfKind: UICollectionElementKindSectionHeader
+                                                          withIndexPath: sectionPath];
 	headerAttributes.frame = headerFrame;
 	[headerFooterItemAttributes[UICollectionElementKindSectionHeader] addObject:headerAttributes];
 	if (headerFrame.size.height > 0)
